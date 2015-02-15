@@ -40,7 +40,7 @@ public class SubscriptionHandler {
 
     @RequestMapping("/subscription/status")
     public AccountResponse subscriptionStatus(@RequestParam(value = "token",required = true)String token,Model model){
-        LoggerUtils.logDebug(logger,"Subscription status received");
+        LoggerUtils.logDebug(logger,"Subscription status     received");
         return buildAccountResponse();
     }
 

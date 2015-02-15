@@ -1,4 +1,6 @@
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\Application.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\SubscriptionHandler.java
-C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\response\AccountResponse.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\utils\LoggerUtils.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\utils\OAuthUtil.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\IsAlive.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\response\AccountResponse.java

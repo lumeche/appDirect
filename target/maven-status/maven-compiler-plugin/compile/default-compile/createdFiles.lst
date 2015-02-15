@@ -1,4 +1,6 @@
 com\appdirect\controller\SubscriptionHandler.class
+com\appdirect\model\utils\OAuthUtil.class
 com\appdirect\controller\IsAlive.class
 com\appdirect\Application.class
+com\appdirect\model\utils\LoggerUtils.class
 com\appdirect\controller\response\AccountResponse.class
