@@ -109,10 +109,10 @@
         </entry>
       </file>
       <file leaf-file-name="Procfile" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Procfile">
+        <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.02556391" vertical-offset="0" max-vertical-offset="665">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -398,8 +398,8 @@
       <recent name="com.appdirect" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\NENE\IdeaProjects\appDirect\src\main\resources" />
       <recent name="C:\Users\NENE\IdeaProjects\appDirect" />
+      <recent name="C:\Users\NENE\IdeaProjects\appDirect\src\main\resources" />
     </key>
   </component>
   <component name="RunManager">
@@ -655,12 +655,12 @@
       <updated>1423796557584</updated>
       <workItem from="1423796560968" duration="2308000" />
       <workItem from="1423945659913" duration="11511000" />
-      <workItem from="1423959623147" duration="1437000" />
+      <workItem from="1423959623147" duration="1563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15256000" />
+    <option name="totallyTimeSpent" value="15382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1548" height="842" extended-state="0" />
@@ -782,7 +782,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Procfile">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="119">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
@@ -923,10 +923,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Procfile">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.02556391" vertical-offset="0" max-vertical-offset="665">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
