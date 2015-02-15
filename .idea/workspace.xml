@@ -111,8 +111,8 @@
       <file leaf-file-name="Procfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02556391" vertical-offset="0" max-vertical-offset="665">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -154,7 +154,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/Welcome.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/welcome.html" />
-        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/oauth/oauth.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/SubscriptionHandler/SubscriptionCreate.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/SubscriptionCreate.java" />
@@ -167,6 +166,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/IsAlive.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Procfile" />
+        <option value="$PROJECT_DIR$/Procfile" />
       </list>
     </option>
   </component>
@@ -655,12 +655,12 @@
       <updated>1423796557584</updated>
       <workItem from="1423796560968" duration="2308000" />
       <workItem from="1423945659913" duration="11511000" />
-      <workItem from="1423959623147" duration="1563000" />
+      <workItem from="1423959623147" duration="1879000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15382000" />
+    <option name="totallyTimeSpent" value="15698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1548" height="842" extended-state="0" />
@@ -925,8 +925,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02556391" vertical-offset="0" max-vertical-offset="665">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
