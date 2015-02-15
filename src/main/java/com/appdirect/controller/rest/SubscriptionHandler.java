@@ -2,6 +2,7 @@ package com.appdirect.controller.rest;
 
 import com.appdirect.controller.web.IsAlive;
 import com.appdirect.controller.rest.response.AccountResponse;
+import com.appdirect.model.ErrorCode;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ public class SubscriptionHandler {
     //FIXME delete this method
     private AccountResponse buildAccountResponse() {
         AccountResponse resp=new AccountResponse();
-        resp.setAccountIdentifier(UUID.randomUUID().toString());
+        resp.setErrorCode(ErrorCode.UNKNOWN_ERROR);
         resp.setMessage("----------------");
         resp.setSuccess(true);
         return resp;
