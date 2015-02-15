@@ -28,6 +28,7 @@ public class SubscriptionHandler {
     @RequestMapping("/subscription/create")
     public SubcriptionResponse subscriptionCreate(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription create received. Token: %s",token);
+        subscriptionManager.createSubscription(token);
         return buildAccountResponse();
     }
 
