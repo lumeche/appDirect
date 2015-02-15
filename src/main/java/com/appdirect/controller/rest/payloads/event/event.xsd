@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="event" type="eventType"/>
+  <xs:complexType name="configurationType">
+    <xs:sequence>
+      <xs:element type="entryType" name="entry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payloadType">
+    <xs:sequence>
+      <xs:element type="companyType" name="company"/>
+      <xs:element type="configurationType" name="configuration"/>
+      <xs:element type="orderType" name="order"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="entryType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="key"/>
+      <xs:element type="xs:string" name="value"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="orderType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="editionCode"/>
+      <xs:element type="itemType" name="item" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="xs:string" name="pricingDuration"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="marketplaceType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="baseUrl"/>
+      <xs:element type="xs:string" name="partner"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="itemType">
+    <xs:sequence>
+      <xs:element name="quantity">
+        <xs:simpleType>
+          <xs:restriction base="xs:byte">
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="unit">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="USER"/>
+            <xs:enumeration value="MEGABYTE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="companyType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="country"/>
+      <xs:element type="xs:string" name="email"/>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="phoneNumber"/>
+      <xs:element type="xs:string" name="uuid"/>
+      <xs:element type="xs:anyURI" name="website"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eventType">
+    <xs:sequence>
+      <xs:element type="creatorType" name="creator"/>
+      <xs:element type="xs:string" name="flag"/>
+      <xs:element type="marketplaceType" name="marketplace"/>
+      <xs:element type="payloadType" name="payload"/>
+      <xs:element type="xs:string" name="returnUrl"/>
+      <xs:element type="xs:string" name="type"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creatorType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="email"/>
+      <xs:element type="xs:string" name="firstName"/>
+      <xs:element type="xs:string" name="language"/>
+      <xs:element type="xs:string" name="lastName"/>
+      <xs:element type="xs:string" name="openId"/>
+      <xs:element type="xs:string" name="uuid"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
