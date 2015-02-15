@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by Luis Tobon on 2015-02-15.
  */
-@RestController
+
 public abstract class AbstractHandler {
 
     final static Logger logger = LoggerFactory.getLogger(AbstractHandler.class);

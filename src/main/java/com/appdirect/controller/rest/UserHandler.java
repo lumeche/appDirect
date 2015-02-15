@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by Luis Tobon on 2015-02-15.
  */
-
+@RestController
 public class UserHandler extends AbstractHandler{
 
     final static Logger logger = LoggerFactory.getLogger(UserHandler.class);
