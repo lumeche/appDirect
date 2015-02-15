@@ -1,0 +1,4 @@
+com\appdirect\controller\SubscriptionHandler.class
+com\appdirect\controller\IsAlive.class
+com\appdirect\Application.class
+com\appdirect\controller\response\AccountResponse.class
