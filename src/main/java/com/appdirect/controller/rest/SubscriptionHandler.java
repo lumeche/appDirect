@@ -1,6 +1,7 @@
-package com.appdirect.controller;
+package com.appdirect.controller.rest;
 
-import com.appdirect.controller.response.AccountResponse;
+import com.appdirect.controller.web.IsAlive;
+import com.appdirect.controller.rest.response.AccountResponse;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
