@@ -34,19 +34,19 @@ public class SubscriptionHandler {
 
     @RequestMapping("/subscription/change")
     public SubcriptionResponse subscriptionChange(@RequestParam(value = "token",required = true)String token,Model model){
-        LoggerUtils.logDebug(logger,"Subscription change received. Token: %s\",token");
+        LoggerUtils.logDebug(logger,"Subscription change received. Token: %s",token);
         return buildAccountResponse();
     }
 
     @RequestMapping("/subscription/cancel")
     public SubcriptionResponse subscriptionCancel(@RequestParam(value = "token",required = true)String token,Model model){
-        LoggerUtils.logDebug(logger,"Subscription delete received. Token: %s\",token");
+        LoggerUtils.logDebug(logger,"Subscription delete received. Token: %s",token);
         return buildAccountResponse();
     }
 
     @RequestMapping("/subscription/status")
     public SubcriptionResponse subscriptionStatus(@RequestParam(value = "token",required = true)String token,Model model){
-        LoggerUtils.logDebug(logger,"Subscription status     received. Token: %s\",token");
+        LoggerUtils.logDebug(logger,"Subscription status     received. Token: %s",token);
         return buildAccountResponse();
     }
 

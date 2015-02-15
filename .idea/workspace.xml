@@ -53,8 +53,8 @@
       <file leaf-file-name="LoggerUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/LoggerUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="782">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,8 +83,8 @@
       <file leaf-file-name="SubscriptionHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/SubscriptionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84360904" vertical-offset="51" max-vertical-offset="1020">
-              <caret line="48" column="88" selection-start-line="48" selection-start-column="88" selection-end-line="48" selection-end-column="88" />
+            <state vertical-scroll-proportion="0.35789475" vertical-offset="51" max-vertical-offset="1020">
+              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -190,7 +190,6 @@
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/oauth/OAuthHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/oauth/OAuthUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/LoggerUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/OAuthUtil.java" />
         <option value="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-web/1.1.10.RELEASE/spring-boot-starter-web-1.1.10.RELEASE.pom" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -202,6 +201,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/response/SubcriptionResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/SubscriptionManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/SubscriptionHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/LoggerUtils.java" />
       </list>
     </option>
   </component>
@@ -832,12 +832,12 @@
       <workItem from="1423959623147" duration="4292000" />
       <workItem from="1423964172359" duration="96000" />
       <workItem from="1423964327211" duration="31000" />
-      <workItem from="1423964359746" duration="2636000" />
+      <workItem from="1423964359746" duration="3014000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20874000" />
+    <option name="totallyTimeSpent" value="21252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1548" height="842" extended-state="0" />
@@ -1235,14 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/LoggerUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
@@ -1313,10 +1305,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/model/utils/LoggerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="782">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/SubscriptionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84360904" vertical-offset="51" max-vertical-offset="1020">
-          <caret line="48" column="88" selection-start-line="48" selection-start-column="88" selection-end-line="48" selection-end-column="88" />
+        <state vertical-scroll-proportion="0.35789475" vertical-offset="51" max-vertical-offset="1020">
+          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
           <folding />
         </state>
       </provider>
