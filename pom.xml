@@ -34,11 +34,11 @@
             <artifactId>woodstox-core-asl</artifactId>
             <version>4.4.1</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>oauth.signpost</groupId>-->
-            <!--<artifactId>oauth-signpost</artifactId>-->
-            <!--<version>1.2.1.2</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>oauth.signpost</groupId>
+            <version>1.2.1.2</version>
+            <artifactId>signpost-core</artifactId>
+        </dependency>
     </dependencies>
 
 
