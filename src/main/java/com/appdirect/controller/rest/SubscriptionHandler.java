@@ -16,23 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by NENE on 2015-02-14.
+ * Created by Luis Tobon on 2015-02-14.
  */
 
-@RestController
-public class SubscriptionHandler {
+public class SubscriptionHandler extends AbstractHandler{
     final static Logger logger = LoggerFactory.getLogger(SubscriptionHandler.class);
-
-
-    @Autowired
-    private RestTemplate oauthRestTemplate;
 
     @Autowired
     private SubscriptionManager subscriptionManager;
-
-    @Value(value = "${appdirect.events.url}")
-    private String appDirectEventsURL;
-
 
     @RequestMapping("/subscription/create")
     public SubcriptionResponse subscriptionCreate(@RequestParam(value = "token",required = true)String token,Model model){
@@ -67,24 +58,6 @@ public class SubscriptionHandler {
         return buildAccountResponse();
     }
 
-
-
-    private EventType getEventInfo(String token) {
-        LoggerUtils.logDebug(logger, "About to send GET request to %s with token $s", appDirectEventsURL, token);
-        EventType event=oauthRestTemplate.getForObject(appDirectEventsURL,EventType.class,token);
-        LoggerUtils.logDebug(logger,"Event  returned type:%s, flag:%s returnURL:%S",event.getType(),event.getFlag(),event.getReturnUrl());
-        return event;
-    }
-
-    //FIXME addTest units for this
-    //FIXME delete this method
-    private SubcriptionResponse buildAccountResponse() {
-        SubcriptionResponse resp=new SubcriptionResponse();
-        resp.setErrorCode(ErrorCode.UNKNOWN_ERROR);
-        resp.setMessage("----------------");
-        resp.setSuccess(true);
-        return resp;
-    }
 
     public void setSubscriptionManager(SubscriptionManager subscriptionManager) {
         this.subscriptionManager = subscriptionManager;

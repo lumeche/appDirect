@@ -1,6 +1,7 @@
 package com.appdirect.model.subscription;
 
 import com.appdirect.controller.rest.payloads.event.generated.EventType;
+import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class SubscriptionManager {
     private SubscriptionFactory subscriptionFactory;
     public boolean createSubscription(EventType event){
         Subscription newSubscription=subscriptionFactory.buildSubscription(event);
+        activeSubscriptions.put(newSubscription.getId(),newSubscription);
+        LoggerUtils.logDebug(logger,"Subscription %s added",newSubscription.getId());
         return false;
     }
 
