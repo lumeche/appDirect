@@ -11,6 +11,9 @@ public class SubcriptionCreated {
     private String message;
     private String accountIdentifier;
 
+    public SubcriptionCreated() {
+    }
+
     public SubcriptionCreated(String success, String message, String accountIdentifier) {
         this.success = success;
         this.message = message;
