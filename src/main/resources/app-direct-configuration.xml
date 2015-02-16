@@ -10,4 +10,6 @@
         <property name="key" value="${oauth.consumer.key}"/>
         <property name="secret" value="${oauth.consumer.secret}"/>
     </bean>
+
+    <bean id="xpathTemplate" class="org.springframework.xml.xpath.Jaxp13XPathTemplate"/>
 </beans>

@@ -7,8 +7,13 @@ public class Subscription {
     private String id;
     private String subscriptionType;
     private String subscriptionStatus;
-    private int usersInSubcription;
-    private int usersAssignedInSubcription;
+
+
+    @Override
+    public String toString() {
+        return String.format("id:[%s] type:[%s] status:[%s]",id,subscriptionType,subscriptionStatus);
+    }
+
     private String pricing;
 
     public String getId() {
@@ -33,22 +38,6 @@ public class Subscription {
 
     public void setSubscriptionStatus(String subscriptionStatus) {
         this.subscriptionStatus = subscriptionStatus;
-    }
-
-    public int getUsersInSubcription() {
-        return usersInSubcription;
-    }
-
-    public void setUsersInSubcription(int usersInSubcription) {
-        this.usersInSubcription = usersInSubcription;
-    }
-
-    public int getUsersAssignedInSubcription() {
-        return usersAssignedInSubcription;
-    }
-
-    public void setUsersAssignedInSubcription(int usersAssignedInSubcription) {
-        this.usersAssignedInSubcription = usersAssignedInSubcription;
     }
 
     public String getPricing() {

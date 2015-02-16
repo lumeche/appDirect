@@ -1,19 +1,19 @@
 package com.appdirect.controller.rest;
 
+import com.appdirect.controller.rest.payloads.SubcriptionCreated;
 import com.appdirect.controller.rest.payloads.SubcriptionResponse;
-import com.appdirect.controller.rest.payloads.event.generated.EventType;
-import com.appdirect.model.ErrorCode;
 import com.appdirect.model.subscription.SubscriptionManager;
 import com.appdirect.model.utils.LoggerUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import javax.xml.transform.Source;
 
 /**
  * Created by Luis Tobon on 2015-02-14.
@@ -26,36 +26,40 @@ public class SubscriptionHandler extends AbstractHandler{
     private SubscriptionManager subscriptionManager;
 
     @RequestMapping("/subscription/create")
-    public SubcriptionResponse subscriptionCreate(@RequestParam(value = "token",required = true)String token,Model model){
+    public SubcriptionCreated subscriptionCreate(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription create received. Token: %s",token);
-        EventType event = getEventInfo(token);
-        subscriptionManager.createSubscription(event);
-        return buildAccountResponse();
+        Source event = getEventInfo(token);
+        String id=subscriptionManager.createSubscription(event);
+        if(StringUtils.isNotEmpty(id)){
+            return new SubcriptionCreated(Boolean.TRUE.toString(),"",id);
+        }else{
+            return new SubcriptionCreated(Boolean.FALSE.toString(),"",id);
+        }
     }
 
 
     @RequestMapping("/subscription/change")
     public SubcriptionResponse subscriptionChange(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription change received. Token: %s",token);
-        EventType event = getEventInfo(token);
+        Source event = getEventInfo(token);
         subscriptionManager.updateSubscription(event);
-        return buildAccountResponse();
+        return buildResponse();
     }
 
     @RequestMapping("/subscription/cancel")
     public SubcriptionResponse subscriptionCancel(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription delete received. Token: %s",token);
-        EventType event = getEventInfo(token);
+        Source event = getEventInfo(token);
         subscriptionManager.deleteSubscription(event);
-        return buildAccountResponse();
+        return buildResponse();
     }
 
     @RequestMapping("/subscription/status")
     public SubcriptionResponse subscriptionStatus(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription status     received. Token: %s",token);
-        EventType event = getEventInfo(token);
+        Source event = getEventInfo(token);
         subscriptionManager.updateStatusSubscriptions(event);
-        return buildAccountResponse();
+        return buildResponse();
     }
 
 

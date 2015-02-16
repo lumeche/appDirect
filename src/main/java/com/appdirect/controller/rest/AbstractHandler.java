@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.xml.transform.Source;
+
 /**
  * Created by Luis Tobon on 2015-02-15.
  */
@@ -25,17 +27,17 @@ public abstract class AbstractHandler {
     @Value(value = "${appdirect.events.url}")
     private String appDirectEventsURL;
 
-    protected EventType getEventInfo(String token) {
-        LoggerUtils.logDebug(logger, "About to send GET request to %s with token $s", appDirectEventsURL, token);
-        EventType event=oauthRestTemplate.getForObject(appDirectEventsURL,EventType.class,token);
-        LoggerUtils.logDebug(logger,"Event  returned type:%s, flag:%s returnURL:%S",event.getType(),event.getFlag(),event.getReturnUrl());
+    protected Source getEventInfo(String token) {
+        LoggerUtils.logDebug(logger, "About to send GET request to %s with token %s", appDirectEventsURL, token);
+        Source event=oauthRestTemplate.getForObject(appDirectEventsURL,Source.class,token);
+        LoggerUtils.logDebug(logger,"Event  returned %s",event.toString());
         return event;
     }
 
 
     //FIXME addTest units for this
     //FIXME delete this method
-    protected SubcriptionResponse buildAccountResponse() {
+    protected SubcriptionResponse buildResponse() {
         SubcriptionResponse resp=new SubcriptionResponse();
         resp.setErrorCode(ErrorCode.UNKNOWN_ERROR);
         resp.setMessage("----------------");

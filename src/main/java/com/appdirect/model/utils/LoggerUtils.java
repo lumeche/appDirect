@@ -37,4 +37,14 @@ public class LoggerUtils {
 
         }
     }
+
+    public static void logError(Logger logger,Throwable e, String format, String... args) {
+        try {
+            if (logger.isErrorEnabled()) {
+                logger.error(String.format(format, args),e);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
 }

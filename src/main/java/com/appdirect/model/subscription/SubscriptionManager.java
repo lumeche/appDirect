@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.xml.transform.Source;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,29 +20,34 @@ public class SubscriptionManager {
 
     final static Logger logger = LoggerFactory.getLogger(SubscriptionManager.class);
 
-    private Map<String,Subscription> activeSubscriptions=new HashMap<String,Subscription>();
+    private Map<String,Subscription> activeSubscriptions= Collections.synchronizedMap(new HashMap<String,Subscription>());
 
     @Autowired
     private SubscriptionFactory subscriptionFactory;
-    public boolean createSubscription(EventType event){
-        Subscription newSubscription=subscriptionFactory.buildSubscription(event);
-        activeSubscriptions.put(newSubscription.getId(),newSubscription);
-        LoggerUtils.logDebug(logger,"Subscription %s added",newSubscription.getId());
+    public String createSubscription(Source event){
+        try {
+            Subscription newSubscription=subscriptionFactory.buildSubscription(event);
+            activeSubscriptions.put(newSubscription.getId(),newSubscription);
+            LoggerUtils.logDebug(logger,"Subscription %s added",newSubscription.getId());
+            return newSubscription.getId();
+        }catch (Exception e){
+            LoggerUtils.logError(logger,e,"Error creating subcription for event");
+            return null;
+        }
+    }
+
+    public boolean updateSubscription(Source event){
+
         return false;
     }
 
-    public boolean updateSubscription(EventType event){
-
-        return false;
-    }
-
-    public boolean deleteSubscription(EventType event){
+    public boolean deleteSubscription(Source event){
 
         return false;
     }
 
 
-    public void updateStatusSubscriptions(EventType event) {
+    public void updateStatusSubscriptions(Source event) {
     }
 
 
