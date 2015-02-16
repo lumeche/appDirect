@@ -15,6 +15,7 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Node;
 
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import java.util.UUID;
 
 /**
@@ -32,21 +33,39 @@ public class SubscriptionFactory {
     @Value("${appdirect.events.pricing.xpath}")
     private String pricingXPath;
 
+    @Value("${appdirect.evetns.account.identifier}")
+    private String accountIDXPath;
     @Autowired
     private XPathOperations xpathTemplate;
 
-    public Subscription buildSubscription(Source event) {
+    public Subscription buildSubscription(String event) {
+        return getSubscriptionWithGivenId(event,UUID.randomUUID().toString());
+    }
+
+    public Subscription retrieveSubscription(String event){
+        String id=getXpath(event,accountIDXPath);
+        LoggerUtils.logInfo(logger,"subscription %s received",id);
+        return getSubscriptionWithGivenId(event,id);
+    }
+
+
+    private Subscription getSubscriptionWithGivenId(String event,String id) {
         Subscription subscription=new Subscription();
 
-        String pricing=xpathTemplate.evaluateAsString(pricingXPath,event);
-        String subscriptionType=xpathTemplate.evaluateAsString(editionCodeXPath,event);
+        String pricing = getXpath(event,pricingXPath);
+        String subscriptionType=getXpath(event,editionCodeXPath);
 
-        subscription.setId(UUID.randomUUID().toString());
+        subscription.setId(id);
         subscription.setPricing(pricing);
         subscription.setSubscriptionType(subscriptionType);
         subscription.setSubscriptionStatus(ACTIVE);
-        LoggerUtils.logDebug(logger,"subscription %s created",subscription.toString());
+        LoggerUtils.logDebug(logger, "subscription %s created", subscription.toString());
         return subscription;
+    }
+
+    private String getXpath(String event,String xpath) {
+        Source src = new StreamSource(new java.io.StringReader(event));
+        return xpathTemplate.evaluateAsString(xpath,src);
     }
 
     public void setXpathTemplate(XPathOperations xpathTemplate) {

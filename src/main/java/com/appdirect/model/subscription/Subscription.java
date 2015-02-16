@@ -7,14 +7,13 @@ public class Subscription {
     private String id;
     private String subscriptionType;
     private String subscriptionStatus;
+    private String pricing;
 
 
     @Override
     public String toString() {
-        return String.format("id:[%s] type:[%s] status:[%s]",id,subscriptionType,subscriptionStatus);
+        return String.format("id:[%s] type:[%s] status:[%s] pricing[%s]",id,subscriptionType,subscriptionStatus,pricing);
     }
-
-    private String pricing;
 
     public String getId() {
         return id;

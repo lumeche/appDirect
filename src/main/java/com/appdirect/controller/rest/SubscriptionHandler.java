@@ -28,7 +28,7 @@ public class SubscriptionHandler extends AbstractHandler{
     @RequestMapping("/subscription/create")
     public SubcriptionCreated subscriptionCreate(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription create received. Token: %s",token);
-        Source event = getEventInfo(token);
+        String event = getEventInfo(token);
         String id=subscriptionManager.createSubscription(event);
         if(StringUtils.isNotEmpty(id)){
             return new SubcriptionCreated(Boolean.TRUE.toString(),"",id);
@@ -41,7 +41,7 @@ public class SubscriptionHandler extends AbstractHandler{
     @RequestMapping("/subscription/change")
     public SubcriptionResponse subscriptionChange(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription change received. Token: %s",token);
-        Source event = getEventInfo(token);
+        String event = getEventInfo(token);
         subscriptionManager.updateSubscription(event);
         return buildResponse();
     }
@@ -49,7 +49,7 @@ public class SubscriptionHandler extends AbstractHandler{
     @RequestMapping("/subscription/cancel")
     public SubcriptionResponse subscriptionCancel(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription delete received. Token: %s",token);
-        Source event = getEventInfo(token);
+        String event = getEventInfo(token);
         subscriptionManager.deleteSubscription(event);
         return buildResponse();
     }
@@ -57,7 +57,7 @@ public class SubscriptionHandler extends AbstractHandler{
     @RequestMapping("/subscription/status")
     public SubcriptionResponse subscriptionStatus(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription status     received. Token: %s",token);
-        Source event = getEventInfo(token);
+        String event = getEventInfo(token);
         subscriptionManager.updateStatusSubscriptions(event);
         return buildResponse();
     }

@@ -27,9 +27,9 @@ public abstract class AbstractHandler {
     @Value(value = "${appdirect.events.url}")
     private String appDirectEventsURL;
 
-    protected Source getEventInfo(String token) {
+    protected String getEventInfo(String token) {
         LoggerUtils.logDebug(logger, "About to send GET request to %s with token %s", appDirectEventsURL, token);
-        Source event=oauthRestTemplate.getForObject(appDirectEventsURL,Source.class,token);
+        String event=oauthRestTemplate.getForObject(appDirectEventsURL,String.class,token);
         LoggerUtils.logDebug(logger,"Event  returned %s",event.toString());
         return event;
     }

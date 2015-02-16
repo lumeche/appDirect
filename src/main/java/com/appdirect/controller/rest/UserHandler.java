@@ -26,7 +26,7 @@ public class UserHandler extends AbstractHandler{
     @RequestMapping("/user/assign")
     public SubcriptionResponse userAssign(@RequestParam(value = "token",required = true)String token){
         LoggerUtils.logDebug(logger, "User assign received. Token: %s", token);
-        Source event=getEventInfo(token);
+        String event=getEventInfo(token);
         userManagement.assignUser(event);
         return buildResponse();
     }
@@ -34,7 +34,7 @@ public class UserHandler extends AbstractHandler{
     @RequestMapping("/user/unassign")
     public SubcriptionResponse userUnAssign(@RequestParam(value = "token",required = true)String token){
         LoggerUtils.logDebug(logger, "User unassigned received. Token: %s", token);
-        Source event=getEventInfo(token);
+        String event=getEventInfo(token);
         userManagement.unassignUser(event);
         return buildResponse();
     }

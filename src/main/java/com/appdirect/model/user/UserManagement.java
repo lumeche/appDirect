@@ -16,12 +16,12 @@ public class UserManagement {
 
     final static Logger logger = LoggerFactory.getLogger(UserManagement.class);
 
-    public boolean assignUser(Source event){
+    public boolean assignUser(String event){
         LoggerUtils.logDebug(logger,"User %s assigned",event.toString());
         return false;
     }
 
-    public boolean unassignUser(Source event){
+    public boolean unassignUser(String event){
         LoggerUtils.logDebug(logger,"User %s unassigned",event.toString());
         return false;
     }
