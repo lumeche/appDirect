@@ -58,10 +58,22 @@ public class SubscriptionManager {
 
 
     public boolean updateStatusSubscriptions(String event) {
-        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
+        String subscriptionId= subscriptionFactory.getSubscriptionId(event);
+        String subscriptionStatus=subscriptionFactory.getNotice(event);
 
-        if (!containsSubscriptions(subscriptionReceived)) return false;
+        if (!containsSubscriptions(subscriptionId)) return false;
+        Subscription subscriptionToUpdate=activeSubscriptions.get(subscriptionId);
+        subscriptionToUpdate.setSubscriptionStatus(subscriptionStatus);
+        return true;
+    }
 
+    private boolean containsSubscriptions(String subscriptionId) {
+        if(activeSubscriptions.containsKey(subscriptionId)){
+            return true
+        }else{
+            LoggerUtils.logDebug(logger, "Subscription %s not found", subscriptionReceived.getId());
+            return false;
+        }
     }
 
 

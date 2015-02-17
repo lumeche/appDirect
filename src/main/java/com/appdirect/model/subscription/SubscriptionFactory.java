@@ -45,10 +45,16 @@ public class SubscriptionFactory {
         return getSubscriptionWithGivenId(event,UUID.randomUUID().toString());
     }
 
+
+
     public Subscription retrieveSubscription(String event){
-        String id=getXpath(event,accountIDXPath);
+        String id = getSubscriptionId(event);
         LoggerUtils.logInfo(logger,"subscription %s received",id);
         return getSubscriptionWithGivenId(event,id);
+    }
+
+    public String getSubscriptionId(String event) {
+        return getXpath(event,accountIDXPath);
     }
 
     public String getNotice(String event){
