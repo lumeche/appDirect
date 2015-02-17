@@ -69,9 +69,9 @@ public class SubscriptionManager {
 
     private boolean containsSubscriptions(String subscriptionId) {
         if(activeSubscriptions.containsKey(subscriptionId)){
-            return true
+            return true;
         }else{
-            LoggerUtils.logDebug(logger, "Subscription %s not found", subscriptionReceived.getId());
+            LoggerUtils.logDebug(logger, "Subscription %s not found", subscriptionId);
             return false;
         }
     }

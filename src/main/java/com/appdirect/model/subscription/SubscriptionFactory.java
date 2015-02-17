@@ -58,7 +58,7 @@ public class SubscriptionFactory {
     }
 
     public String getNotice(String event){
-        String notice=getXpath(event,noticeXPath);
+        return getXpath(event,noticeXPath);
     }
 
 
