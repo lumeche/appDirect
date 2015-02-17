@@ -41,27 +41,27 @@
       <file leaf-file-name="Subscriptions.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="646">
-              <caret line="24" column="41" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+              <caret line="22" column="35" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscriptions.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="subscriptions.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subscriptions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="544">
-              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.08239096" vertical-offset="0" max-vertical-offset="619">
+              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractHandler.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AbstractHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/AbstractHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4883721" vertical-offset="42" max-vertical-offset="867">
+            <state vertical-scroll-proportion="0.0" vertical-offset="42" max-vertical-offset="867">
               <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
               <folding>
                 <element signature="e#1582#1590#0" expanded="true" />
@@ -194,8 +194,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/subscription/SubscriptionFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/subscription/SubscriptionManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/subscriptions.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/AbstractHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/subscriptions.html" />
       </list>
     </option>
   </component>
@@ -361,6 +361,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="subscription" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1214,12 +1218,12 @@
       <workItem from="1423964327211" duration="31000" />
       <workItem from="1423964359746" duration="18533000" />
       <workItem from="1424024376735" duration="19289000" />
-      <workItem from="1424132682000" duration="373000" />
+      <workItem from="1424132682000" duration="1189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56433000" />
+    <option name="totallyTimeSpent" value="57249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1534" height="824" extended-state="0" />
@@ -1628,26 +1632,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="646">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/model/subscription/Subscription.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
           <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subscriptions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="544">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1662,11 +1650,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/AbstractHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4883721" vertical-offset="42" max-vertical-offset="884">
+        <state vertical-scroll-proportion="0.0" vertical-offset="42" max-vertical-offset="867">
           <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
           <folding>
             <element signature="e#1582#1590#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subscriptions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08239096" vertical-offset="0" max-vertical-offset="619">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
