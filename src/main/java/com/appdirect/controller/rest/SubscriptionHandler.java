@@ -2,6 +2,7 @@ package com.appdirect.controller.rest;
 
 import com.appdirect.controller.rest.payloads.SubcriptionCreated;
 import com.appdirect.controller.rest.payloads.SubcriptionResponse;
+import com.appdirect.model.ErrorCode;
 import com.appdirect.model.subscription.SubscriptionManager;
 import com.appdirect.model.utils.LoggerUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,24 +43,25 @@ public class SubscriptionHandler extends AbstractHandler{
     public SubcriptionResponse subscriptionChange(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription change received. Token: %s",token);
         String event = getEventInfo(token);
-        subscriptionManager.updateSubscription(event);
-        return buildResponse();
+        boolean status=subscriptionManager.updateSubscription(event);
+        return new SubcriptionResponse(status, ErrorCode.UNKNOWN_ERROR,"");
+
     }
 
     @RequestMapping("/subscription/cancel")
     public SubcriptionResponse subscriptionCancel(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription delete received. Token: %s",token);
         String event = getEventInfo(token);
-        subscriptionManager.deleteSubscription(event);
-        return buildResponse();
+        boolean status=subscriptionManager.deleteSubscription(event);
+        return new SubcriptionResponse(status,ErrorCode.UNKNOWN_ERROR,"");
     }
 
     @RequestMapping("/subscription/status")
     public SubcriptionResponse subscriptionStatus(@RequestParam(value = "token",required = true)String token,Model model){
         LoggerUtils.logDebug(logger,"Subscription status     received. Token: %s",token);
         String event = getEventInfo(token);
-        subscriptionManager.updateStatusSubscriptions(event);
-        return buildResponse();
+        boolean status=subscriptionManager.updateStatusSubscriptions(event);
+        return new SubcriptionResponse(status,ErrorCode.UNKNOWN_ERROR,"");
     }
 
 

@@ -15,6 +15,23 @@ public class Subscription {
         return String.format("id:[%s] type:[%s] status:[%s] pricing[%s]",id,subscriptionType,subscriptionStatus,pricing);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subscription)) return false;
+
+        Subscription that = (Subscription) o;
+
+        if (!id.equals(that.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
     public String getId() {
         return id;
     }

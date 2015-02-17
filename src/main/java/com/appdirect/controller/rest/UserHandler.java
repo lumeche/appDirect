@@ -1,6 +1,7 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.controller.rest.payloads.SubcriptionResponse;
+import com.appdirect.controller.rest.payloads.UserResult;
 import com.appdirect.model.user.UserManagement;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
@@ -24,19 +25,19 @@ public class UserHandler extends AbstractHandler{
     private UserManagement userManagement;
 
     @RequestMapping("/user/assign")
-    public SubcriptionResponse userAssign(@RequestParam(value = "token",required = true)String token){
+    public UserResult userAssign(@RequestParam(value = "token",required = true)String token){
         LoggerUtils.logDebug(logger, "User assign received. Token: %s", token);
         String event=getEventInfo(token);
-        userManagement.assignUser(event);
-        return buildResponse();
+        boolean status=userManagement.assignUser(event);
+        return new UserResult(status);
     }
 
     @RequestMapping("/user/unassign")
-    public SubcriptionResponse userUnAssign(@RequestParam(value = "token",required = true)String token){
+    public UserResult userUnAssign(@RequestParam(value = "token",required = true)String token){
         LoggerUtils.logDebug(logger, "User unassigned received. Token: %s", token);
         String event=getEventInfo(token);
-        userManagement.unassignUser(event);
-        return buildResponse();
+        boolean status=userManagement.unassignUser(event);
+        return new UserResult(status);
     }
 
     public void setUserManagement(UserManagement userManagement) {

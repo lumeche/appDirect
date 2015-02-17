@@ -1,7 +1,6 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.controller.rest.payloads.SubcriptionResponse;
-import com.appdirect.controller.rest.payloads.event.generated.EventType;
 import com.appdirect.model.ErrorCode;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;

@@ -13,6 +13,14 @@ public class SubcriptionResponse {
     private ErrorCode errorCode;
     private String message;
 
+    public SubcriptionResponse(){};
+
+    public SubcriptionResponse(boolean success, ErrorCode errorCode, String message) {
+        this.success = success;
+        this.errorCode = errorCode;
+        this.message = message;
+    }
+
     public boolean isSuccess() {
         return success;
     }

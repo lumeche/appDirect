@@ -1,6 +1,6 @@
 package com.appdirect.model.subscription;
 
-import com.appdirect.controller.rest.payloads.event.generated.EventType;
+import com.appdirect.exceptions.SubscriptionException;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,10 @@ import java.util.*;
 @Component
 public class SubscriptionManager {
 
-    final static Logger logger = LoggerFactory.getLogger(SubscriptionManager.class);
+    private final static Logger logger = LoggerFactory.getLogger(SubscriptionManager.class);
+
+    public static final String ACTIVE="ACTIVE";
+    public static final String DELETED="DELETED";
 
     private Map<String, Subscription> activeSubscriptions = Collections.synchronizedMap(new HashMap<String, Subscription>());
 
@@ -38,7 +41,7 @@ public class SubscriptionManager {
     public boolean updateSubscription(String event) {
         Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
 
-        if (!containsSubscriptions(subscriptionReceived)) return false;
+        if (!containsSubscriptions(subscriptionReceived.getId())) return false;
 
         Subscription subscriptionToUpdate = activeSubscriptions.get(subscriptionReceived.getId());
         subscriptionToUpdate.setPricing(subscriptionReceived.getPricing());
@@ -48,11 +51,10 @@ public class SubscriptionManager {
     }
 
     public boolean deleteSubscription(String event) {
-        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
-
-        if (!containsSubscriptions(subscriptionReceived)) return false;
-
-        activeSubscriptions.remove(subscriptionReceived.getId());
+        String subscriptionId = subscriptionFactory.getSubscriptionId(event);
+        if (!containsSubscriptions(subscriptionId)) return false;
+        activeSubscriptions.get(subscriptionId).setSubscriptionStatus(DELETED);
+        activeSubscriptions.remove(subscriptionId);
         return true;
     }
 
@@ -76,16 +78,14 @@ public class SubscriptionManager {
         }
     }
 
-
-    private boolean containsSubscriptions(Subscription subscriptionReceived) {
-        if (activeSubscriptions.containsKey(subscriptionReceived.getId())) {
-            return true;
-        } else {
-            LoggerUtils.logDebug(logger, "Subscription %s not found", subscriptionReceived.getId());
-            return false;
+    public Subscription findSubscription(String event){
+        String subscriptionId=subscriptionFactory.getSubscriptionId(event);
+        if(subscriptionId==null || !containsSubscriptions(subscriptionId)){
+            throw new SubscriptionException(String.format("Subscription Id %s didn't found",subscriptionId));
         }
-
+        return activeSubscriptions.get(subscriptionId);
     }
+
 
     public Collection<Subscription> getSubscriptions(){
         return new ArrayList<Subscription>(activeSubscriptions.values());

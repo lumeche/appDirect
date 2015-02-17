@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1>AppDirect.com</h1>
+
+<p>
 <table>
     <thead>
     <tr>
@@ -23,5 +25,49 @@
     </tr>
     </tbody>
 </table>
+</p>
+
+<p>
+<table>
+    <thead>
+    <tr>
+        <th>User id</th>
+        <th>User First Name</th>
+        <th>User Last Name</th>
+        <th>Subscriptions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.userId}"/>
+        <td th:text="${user.firstName}"/>
+        <td th:text="${user.lastName}"/>
+        <td th:text="${user.lastName}"/>
+        <td th:text="${user.lastName}"/>
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Subscription id</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Pricing</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sb : #{usersSubscribed.get(user)}">
+                    <td th:text="${sb.id}"></td>
+                    <td th:text="${sb.subscriptionType}"></td>
+                    <td th:text="${sb.pricing}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+
+
 </body>
 </html>

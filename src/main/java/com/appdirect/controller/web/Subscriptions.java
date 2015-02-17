@@ -1,6 +1,7 @@
 package com.appdirect.controller.web;
 
 import com.appdirect.model.subscription.SubscriptionManager;
+import com.appdirect.model.user.UserManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,24 @@ public class Subscriptions {
     final static Logger logger = LoggerFactory.getLogger(IsAlive.class);
 
     @Autowired
-    SubscriptionManager subscriptionManager;
+    private SubscriptionManager subscriptionManager;
+
+    @Autowired
+    private UserManagement userManagement;
 
     @RequestMapping("/subscriptions")
     public String greeting(Model model){
         model.addAttribute("subscriptions",subscriptionManager.getSubscriptions());
+        model.addAttribute("users",userManagement.getSubscriptionForUser().keySet());
+        model.addAttribute("usersSubscribed",userManagement.getSubscriptionForUser());
         return "subscriptions";
     }
 
     public void setSubscriptionManager(SubscriptionManager subscriptionManager) {
         this.subscriptionManager = subscriptionManager;
+    }
+
+    public void setUserManagement(UserManagement userManagement) {
+        this.userManagement = userManagement;
     }
 }
