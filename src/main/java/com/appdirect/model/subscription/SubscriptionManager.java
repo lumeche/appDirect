@@ -36,7 +36,7 @@ public class SubscriptionManager {
     }
 
     public boolean updateSubscription(String event) {
-        Subscription subscriptionReceived = subscriptionFactory.buildSubscription(event);
+        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
 
         if (!containsSubscriptions(subscriptionReceived)) return false;
 
@@ -48,7 +48,7 @@ public class SubscriptionManager {
     }
 
     public boolean deleteSubscription(String event) {
-        Subscription subscriptionReceived = subscriptionFactory.buildSubscription(event);
+        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
 
         if (!containsSubscriptions(subscriptionReceived)) return false;
 
