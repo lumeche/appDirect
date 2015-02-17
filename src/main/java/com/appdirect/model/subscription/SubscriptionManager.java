@@ -57,8 +57,11 @@ public class SubscriptionManager {
     }
 
 
-    public void updateStatusSubscriptions(String event) {
-        updateSubscription(event);
+    public boolean updateStatusSubscriptions(String event) {
+        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
+
+        if (!containsSubscriptions(subscriptionReceived)) return false;
+
     }
 
 

@@ -38,6 +38,9 @@ public class SubscriptionFactory {
     @Autowired
     private XPathOperations xpathTemplate;
 
+    @Value("${appdirect.events.account.notice}")
+    private String noticeXPath;
+
     public Subscription buildSubscription(String event) {
         return getSubscriptionWithGivenId(event,UUID.randomUUID().toString());
     }
@@ -46,6 +49,10 @@ public class SubscriptionFactory {
         String id=getXpath(event,accountIDXPath);
         LoggerUtils.logInfo(logger,"subscription %s received",id);
         return getSubscriptionWithGivenId(event,id);
+    }
+
+    public String getNotice(String event){
+        String notice=getXpath(event,noticeXPath);
     }
 
 
