@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Subscriptions.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Subscriptions.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="646">
-              <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.5255814" vertical-offset="18" max-vertical-offset="799">
+              <caret line="35" column="84" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -108,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscriptions.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="subscriptions.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subscriptions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74151856" vertical-offset="510" max-vertical-offset="1326">
-              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+            <state vertical-scroll-proportion="-17.653847" vertical-offset="510" max-vertical-offset="1326">
+              <caret line="57" column="60" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -198,7 +198,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/user/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/subscription/Subscription.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/user/UserManagement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/AbstractHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/model/subscription/SubscriptionManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/exceptions/SubscriptionException.java" />
@@ -207,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/SubscriptionHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/rest/UserHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/subscriptions.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java" />
       </list>
     </option>
   </component>
@@ -1292,12 +1292,12 @@
       <workItem from="1423964359746" duration="18533000" />
       <workItem from="1424024376735" duration="19289000" />
       <workItem from="1424132682000" duration="10546000" />
-      <workItem from="1424222486806" duration="2377000" />
+      <workItem from="1424222486806" duration="4330000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68983000" />
+    <option name="totallyTimeSpent" value="70936000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1534" height="824" extended-state="0" />
@@ -1618,13 +1618,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="834" max-vertical-offset="1479">
           <caret line="66" column="69" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1526#1527#0" expanded="true" />
-            <element signature="e#1592#1593#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
-            <element signature="e#1699#1700#0" expanded="true" />
-            <element signature="e#2601#2602#0" expanded="true" />
-            <element signature="e#2649#2650#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1526#1527#0" expanded="false" />
+            <element signature="e#1592#1593#0" expanded="false" />
+            <element signature="e#1636#1637#0" expanded="false" />
+            <element signature="e#1699#1700#0" expanded="false" />
+            <element signature="e#2601#2602#0" expanded="false" />
+            <element signature="e#2649#2650#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1640,6 +1640,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="952">
           <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding>
+            <element signature="e#730#731#0" expanded="true" />
+            <element signature="e#766#767#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1749,14 +1753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="646">
-          <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/model/user/UserManagement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="919" max-vertical-offset="1615">
@@ -1770,8 +1766,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subscriptions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74151856" vertical-offset="510" max-vertical-offset="1326">
-          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        <state vertical-scroll-proportion="-17.653847" vertical-offset="510" max-vertical-offset="1326">
+          <caret line="57" column="60" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/appdirect/controller/web/Subscriptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5255814" vertical-offset="18" max-vertical-offset="799">
+          <caret line="35" column="84" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
           <folding />
         </state>
       </provider>
