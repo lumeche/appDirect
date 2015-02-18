@@ -7,24 +7,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "result")
 public class SubcriptionCreated {
-    private String success;
+    private boolean success;
     private String message;
     private String accountIdentifier;
 
     public SubcriptionCreated() {
     }
 
-    public SubcriptionCreated(String success, String message, String accountIdentifier) {
+    public SubcriptionCreated(boolean success, String message, String accountIdentifier) {
         this.success = success;
         this.message = message;
         this.accountIdentifier = accountIdentifier;
     }
 
-    public String getSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 

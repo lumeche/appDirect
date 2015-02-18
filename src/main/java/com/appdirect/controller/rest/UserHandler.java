@@ -29,15 +29,26 @@ public class UserHandler extends AbstractHandler{
         LoggerUtils.logDebug(logger, "User assign received. Token: %s", token);
         String event=getEventInfo(token);
         boolean status=userManagement.assignUser(event);
-        return new UserResult(status);
+        return buildUserResult(status);
     }
+
 
     @RequestMapping("/user/unassign")
     public UserResult userUnAssign(@RequestParam(value = "token",required = true)String token){
         LoggerUtils.logDebug(logger, "User unassigned received. Token: %s", token);
         String event=getEventInfo(token);
         boolean status=userManagement.unassignUser(event);
-        return new UserResult(status);
+        return buildUserResult(status);
+    }
+
+
+    private UserResult buildUserResult(boolean status) {
+        if (status){
+            return new UserResult(true);
+        }else{
+            LoggerUtils.logError(logger,"Returning true even if operation failed since we don't have persistence");
+            return new UserResult(true);
+        }
     }
 
     public void setUserManagement(UserManagement userManagement) {
