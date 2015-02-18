@@ -1,6 +1,6 @@
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\payloads\UserResult.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\payloads\SubscriptionResponse.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\AbstractHandler.java
-C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\payloads\SubcriptionResponse.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\subscription\Subscription.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\utils\LoggerUtils.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\user\UserFactory.java
@@ -13,10 +13,10 @@ C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\user\User
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\Application.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\ErrorCode.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\EventManager.java
-C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\payloads\SubcriptionCreated.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\web\Index.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\utils\NodeMapperBuilder.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\exceptions\SubscriptionException.java
+C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\payloads\SubscriptionCreated.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\rest\UserHandler.java
-C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\controller\web\Subscriptions.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\model\utils\OAuthRequestFactory.java
 C:\Users\NENE\IdeaProjects\appDirect\src\main\java\com\appdirect\exceptions\OAuthException.java

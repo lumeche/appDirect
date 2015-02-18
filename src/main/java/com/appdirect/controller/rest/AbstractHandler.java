@@ -1,17 +1,14 @@
 package com.appdirect.controller.rest;
 
-import com.appdirect.controller.rest.payloads.SubcriptionResponse;
-import com.appdirect.model.ErrorCode;
 import com.appdirect.model.utils.LoggerUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.transform.Source;
 import java.util.Arrays;
 
 /**
@@ -21,6 +18,7 @@ import java.util.Arrays;
 public abstract class AbstractHandler {
 
     final static Logger logger = LoggerFactory.getLogger(AbstractHandler.class);
+    private static final CharSequence DUMMY = "dummy";
 
     @Autowired
     private RestTemplate oauthRestTemplate;
@@ -43,15 +41,20 @@ public abstract class AbstractHandler {
         return oauthRestTemplate.exchange(appDirectEventsURL, HttpMethod.GET,entity,String.class,token);
     }
 
-
-    //FIXME addTest units for this
-    //FIXME delete this method
-    protected SubcriptionResponse buildResponse() {
-        SubcriptionResponse resp=new SubcriptionResponse();
-        resp.setErrorCode(ErrorCode.UNKNOWN_ERROR);
-        resp.setMessage("----------------");
-        resp.setSuccess(true);
-        return resp;
+    protected boolean isDummyRequest(String token) {
+        return StringUtils.containsIgnoreCase(token, DUMMY);
     }
 
+
+    protected ResponseEntity  buildForbiddenHTTPResponse() {
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
+    }
+    protected ResponseEntity  buildHTTPResponse(Object response) {
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+
+    protected boolean isInvalidSignature(String authorization) {
+        return false;
+    }
 }
