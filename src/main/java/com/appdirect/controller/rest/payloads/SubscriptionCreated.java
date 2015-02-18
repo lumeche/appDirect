@@ -18,6 +18,8 @@ public class SubscriptionCreated {
     }
 
     public SubscriptionCreated(String accountIdentifier) {
+        this.success=Boolean.TRUE;
+        this.message="";
         this.accountIdentifier = accountIdentifier;
     }
 
