@@ -55,7 +55,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="sb : #{usersSubscribed.get(${user})}">
+                <tr th:each="sb : ${usersSubscribed[${user}]}">
                     <td th:text="${sb.id}"></td>
                     <td th:text="${sb.subscriptionType}"></td>
                     <td th:text="${sb.pricing}"></td>
