@@ -7,7 +7,7 @@ import org.slf4j.Logger;
  */
 public class LoggerUtils {
 
-    public static void logDebug(Logger logger, String format, String... args) {
+    public static void logDebug(Logger logger, String format, Object... args) {
         try {
             if (logger.isDebugEnabled()) {
                 logger.debug(String.format(format, args));
@@ -18,7 +18,7 @@ public class LoggerUtils {
 
     }
 
-    public static void logInfo(Logger logger, String format, String... args) {
+    public static void logInfo(Logger logger, String format, Object... args) {
         try {
             if (logger.isInfoEnabled()) {
                 logger.info(String.format(format, args));
@@ -28,7 +28,7 @@ public class LoggerUtils {
         }
     }
 
-    public static void logError(Logger logger, String format, String... args) {
+    public static void logError(Logger logger, String format, Object... args) {
         try {
             if (logger.isErrorEnabled()) {
                 logger.error(String.format(format, args));

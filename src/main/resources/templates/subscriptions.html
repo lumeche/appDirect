@@ -38,12 +38,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.userId}"/>
-        <td th:text="${user.firstName}"/>
-        <td th:text="${user.lastName}"/>
-        <td th:text="${user.lastName}"/>
-        <td th:text="${user.lastName}"/>
+    <tr th:each="entry : ${usersSubscribed}">
+        <td th:text="${entry.key.userId}">Id</td>
+        <td th:text="${entry.key.firstName}">FirstName</td>
+        <td th:text="${entry.key.lastName}">LastName</td>
         <td>
             <table>
                 <thead>
@@ -55,15 +53,41 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="sb : ${usersSubscribed[$user]}">
-                    <td th:text="${sb.id}"></td>
-                    <td th:text="${sb.subscriptionType}"></td>
-                    <td th:text="${sb.pricing}"></td>
+                <tr th:each="sb : ${entry.value}">
+                    <td th:text="${sb.id}">Id</td>
+                    <td th:text="${sb.subscriptionType}">Type</td>
+                    <td th:text="${sb.pricing}">Pricing</td>
                 </tr>
                 </tbody>
             </table>
         </td>
     </tr>
+    <!--<tr th:each="user : ${users}"> -->
+    <!--<td th:text="${user.userId}"/>-->
+    <!--<td th:text="${user.firstName}"/>-->
+    <!--<td th:text="${user.lastName}"/>-->
+    <!--<td th:text="${user.lastName}"/>-->
+    <!--<td th:text="${user.lastName}"/>-->
+    <!--<td>-->
+    <!--<table>-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>Subscription id</th>-->
+    <!--<th>Type</th>-->
+    <!--<th>Status</th>-->
+    <!--<th>Pricing</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr th:each="sb : ${usersSubscribed[$user]}">-->
+    <!--<td th:text="${sb.id}"></td>-->
+    <!--<td th:text="${sb.subscriptionType}"></td>-->
+    <!--<td th:text="${sb.pricing}"></td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--</td>-->
+    <!--</tr>-->
     </tbody>
 </table>
 </p>
