@@ -55,6 +55,7 @@ public abstract class AbstractHandler {
 
 
     protected boolean isInvalidSignature(String authorization) {
+        LoggerUtils.logDebug(logger,"Authorization header: %s",authorization);
         return false;
     }
 }
