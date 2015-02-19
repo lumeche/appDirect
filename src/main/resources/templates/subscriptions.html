@@ -5,7 +5,25 @@
     <title>Subscriptions</title>
 </head>
 <body>
-<h1>AppDirect.com</h1>
+<h2>AppDirect challengue</h2>
+
+<p>This is a very simple interface to show the integration with appDirect. The following event where integrated</p>
+<ul>
+    <li>Buy application</li>
+    <li>Cancel subscription</li>
+    <li>Upgrade/Downgrade subscription</li>
+    <li>Subscription state change</li>
+    <li>Assign user</li>
+    <li>UnAssign user</li>
+</ul>
+
+<h3>Non data persistence integrated</h3>
+
+<p>Since there is no persistance layer implemented, all the information sent to the application will be lost once the
+    application is closed. So if any application is bought or user assigned, once the application is restarted the
+    information won't match between what AppDirect server has and what the application is showing. To workaround this
+    problem, the application will always return success to any subscription action and/or assignment operation. The
+    application will try to update his data accordingly</p>
 
 <p>
 <table>
@@ -62,36 +80,18 @@
             </table>
         </td>
     </tr>
-    <!--<tr th:each="user : ${users}"> -->
-    <!--<td th:text="${user.userId}"/>-->
-    <!--<td th:text="${user.firstName}"/>-->
-    <!--<td th:text="${user.lastName}"/>-->
-    <!--<td th:text="${user.lastName}"/>-->
-    <!--<td th:text="${user.lastName}"/>-->
-    <!--<td>-->
-    <!--<table>-->
-    <!--<thead>-->
-    <!--<tr>-->
-    <!--<th>Subscription id</th>-->
-    <!--<th>Type</th>-->
-    <!--<th>Status</th>-->
-    <!--<th>Pricing</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<tr th:each="sb : ${usersSubscribed[$user]}">-->
-    <!--<td th:text="${sb.id}"></td>-->
-    <!--<td th:text="${sb.subscriptionType}"></td>-->
-    <!--<td th:text="${sb.pricing}"></td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-    <!--</table>-->
-    <!--</td>-->
-    <!--</tr>-->
     </tbody>
+    <
 </table>
 </p>
+<p>
 
+<form th:action="/" method="get">
+    <button type="submit" name="refresh"
+            th:value="refresh" th:text="Refresh">Refresh
+    </button>
+</form>
+</p>
 
 </body>
 </html>
