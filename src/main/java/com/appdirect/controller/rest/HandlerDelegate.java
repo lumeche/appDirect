@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -15,9 +16,10 @@ import java.util.Arrays;
  * Created by Luis Tobon on 2015-02-15.
  */
 
-public abstract class AbstractHandler {
+@Component
+class HandlerDelegate {
 
-    final static Logger logger = LoggerFactory.getLogger(AbstractHandler.class);
+    final static Logger logger = LoggerFactory.getLogger(HandlerDelegate.class);
     private static final CharSequence DUMMY = "dummy";
 
     @Autowired
@@ -26,7 +28,7 @@ public abstract class AbstractHandler {
     @Value(value = "${appdirect.events.url}")
     private String appDirectEventsURL;
 
-    protected String getEventInfo(String token) {
+    public String getEventInfo(String token) {
         LoggerUtils.logDebug(logger, "About to send GET request to %s with token %s", appDirectEventsURL, token);
         ResponseEntity<String> response = sendGetRequest(token);
         String event=response.getBody();
@@ -34,28 +36,32 @@ public abstract class AbstractHandler {
         return event;
     }
 
-    private ResponseEntity<String> sendGetRequest(String token) {
+    public ResponseEntity<String> sendGetRequest(String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         return oauthRestTemplate.exchange(appDirectEventsURL, HttpMethod.GET,entity,String.class,token);
     }
 
-    protected boolean isDummyRequest(String token) {
+    public boolean isDummyRequest(String token) {
         return StringUtils.containsIgnoreCase(token, DUMMY);
     }
 
 
-    protected ResponseEntity  buildForbiddenHTTPResponse() {
+    public ResponseEntity  buildForbiddenHTTPResponse() {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
-    protected ResponseEntity  buildHTTPResponse(Object response) {
+    public ResponseEntity  buildHTTPResponse(Object response) {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
 
-    protected boolean isInvalidSignature(String authorization) {
+    public boolean isInvalidSignature(String authorization) {
         LoggerUtils.logDebug(logger,"Authorization header: %s",authorization);
         return false;
+    }
+
+    public void setOauthRestTemplate(RestTemplate oauthRestTemplate) {
+        this.oauthRestTemplate = oauthRestTemplate;
     }
 }

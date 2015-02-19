@@ -1,13 +1,11 @@
 package com.appdirect.controller.rest;
 
-import com.appdirect.controller.rest.payloads.SubscriptionResponse;
 import com.appdirect.controller.rest.payloads.UserResult;
 import com.appdirect.model.user.UserManagement;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Luis Tobon on 2015-02-15.
  */
 @RestController
-public class UserHandler extends AbstractHandler{
+public class UserHandler {
 
     final static Logger logger = LoggerFactory.getLogger(UserHandler.class);
+
+    @Autowired
+    private HandlerDelegate handlerDelegate ;
 
     @Autowired
     private UserManagement userManagement;
@@ -59,5 +60,33 @@ public class UserHandler extends AbstractHandler{
 
     public void setUserManagement(UserManagement userManagement) {
         this.userManagement = userManagement;
+    }
+
+    public String getEventInfo(String token) {
+        return handlerDelegate.getEventInfo(token);
+    }
+
+    public ResponseEntity<String> sendGetRequest(String token) {
+        return handlerDelegate.sendGetRequest(token);
+    }
+
+    public boolean isDummyRequest(String token) {
+        return handlerDelegate.isDummyRequest(token);
+    }
+
+    public ResponseEntity buildForbiddenHTTPResponse() {
+        return handlerDelegate.buildForbiddenHTTPResponse();
+    }
+
+    public ResponseEntity buildHTTPResponse(Object response) {
+        return handlerDelegate.buildHTTPResponse(response);
+    }
+
+    public boolean isInvalidSignature(String authorization) {
+        return handlerDelegate.isInvalidSignature(authorization);
+    }
+
+    public void setHandlerDelegate(HandlerDelegate handlerDelegate) {
+        this.handlerDelegate = handlerDelegate;
     }
 }

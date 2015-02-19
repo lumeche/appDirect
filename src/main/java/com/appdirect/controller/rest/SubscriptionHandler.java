@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by Luis Tobon on 2015-02-14.
  */
 @RestController
-public class SubscriptionHandler extends AbstractHandler {
+public class SubscriptionHandler {
     final static Logger logger = LoggerFactory.getLogger(SubscriptionHandler.class);
+
+    @Autowired
+    private HandlerDelegate handlerDelegate;
 
     @Autowired
     private SubscriptionManager subscriptionManager;
@@ -86,5 +90,29 @@ public class SubscriptionHandler extends AbstractHandler {
 
     public void setSubscriptionManager(SubscriptionManager subscriptionManager) {
         this.subscriptionManager = subscriptionManager;
+    }
+
+    protected String getEventInfo(String token) {
+        return handlerDelegate.getEventInfo(token);
+    }
+
+    protected boolean isDummyRequest(String token) {
+        return handlerDelegate.isDummyRequest(token);
+    }
+
+    protected ResponseEntity buildForbiddenHTTPResponse() {
+        return handlerDelegate.buildForbiddenHTTPResponse();
+    }
+
+    protected ResponseEntity buildHTTPResponse(Object response) {
+        return handlerDelegate.buildHTTPResponse(response);
+    }
+
+    protected boolean isInvalidSignature(String authorization) {
+        return handlerDelegate.isInvalidSignature(authorization);
+    }
+
+    public void setHandlerDelegate(HandlerDelegate handlerDelegate) {
+        this.handlerDelegate = handlerDelegate;
     }
 }
