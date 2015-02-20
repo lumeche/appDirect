@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.Source;
 import java.util.*;
 
 /**
@@ -28,7 +27,7 @@ public class SubscriptionManager {
 
     public String createSubscription(String event) {
         try {
-            Subscription newSubscription = subscriptionFactory.buildSubscription(event);
+            Subscription newSubscription = subscriptionFactory.buildNewSubscription(event);
             activeSubscriptions.put(newSubscription.getId(), newSubscription);
             LoggerUtils.logDebug(logger, "Subscription %s added", newSubscription.getId());
             return newSubscription.getId();
@@ -39,7 +38,7 @@ public class SubscriptionManager {
     }
 
     public boolean updateSubscription(String event) {
-        Subscription subscriptionReceived = subscriptionFactory.retrieveSubscription(event);
+        Subscription subscriptionReceived = subscriptionFactory.retrieveExistingSubscription(event);
 
         if (!containsSubscriptions(subscriptionReceived.getId())) return false;
 

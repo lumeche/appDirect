@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,7 @@ public class SignatureTest {
     @Value("${oauth.consumer.secret}")
     private String secret;
 
+    @Ignore
     @Test
     public void testHeaderSignature() throws InvalidKeyException, NoSuchAlgorithmException, DecoderException {
 

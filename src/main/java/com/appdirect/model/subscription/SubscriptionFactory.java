@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.xml.xpath.XPathOperations;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import java.util.UUID;
 
 /**
@@ -19,8 +16,6 @@ import java.util.UUID;
 @Component
 public class SubscriptionFactory {
     final static Logger logger = LoggerFactory.getLogger(SubscriptionFactory.class);
-
-
 
     @Autowired
     private EventManager eventManager;
@@ -33,17 +28,19 @@ public class SubscriptionFactory {
 
     @Value("${appdirect.evetns.account.identifier}")
     private String accountIDXPath;
-    @Value("${appdirect.events.account.notice}")
-    private String noticeXPath;
+    @Value("${appdirect.events.account.status}")
+    private String statusXPath;
 
-    public Subscription buildSubscription(String event) {
-        return getSubscriptionWithGivenId(event,UUID.randomUUID().toString());
+    public Subscription buildNewSubscription(String event) {
+        String status=eventManager.getXpath(event,editionCodeXPath);
+        return getSubscriptionWithGivenIdAndStatus(event, UUID.randomUUID().toString(),status);
     }
 
-    public Subscription retrieveSubscription(String event){
+    public Subscription retrieveExistingSubscription(String event){
         String id = getSubscriptionId(event);
-        LoggerUtils.logInfo(logger,"subscription %s received",id);
-        return getSubscriptionWithGivenId(event,id);
+        String status=eventManager.getXpath(event,statusXPath);
+        LoggerUtils.logInfo(logger,"subscription %s status[%s] received",id,status);
+        return getSubscriptionWithGivenIdAndStatus(event, id,status);
     }
 
     public String getSubscriptionId(String event) {
@@ -51,11 +48,11 @@ public class SubscriptionFactory {
     }
 
     public String getNotice(String event){
-        return eventManager.getXpath(event,noticeXPath);
+        return eventManager.getXpath(event, statusXPath);
     }
 
 
-    private Subscription getSubscriptionWithGivenId(String event,String id) {
+    private Subscription getSubscriptionWithGivenIdAndStatus(String event, String id,String status) {
         Subscription subscription=new Subscription();
 
         String pricing = eventManager.getXpath(event,pricingXPath);
@@ -64,7 +61,7 @@ public class SubscriptionFactory {
         subscription.setId(id);
         subscription.setPricing(pricing);
         subscription.setSubscriptionType(subscriptionType);
-        subscription.setSubscriptionStatus(SubscriptionManager.ACTIVE);
+        subscription.setSubscriptionStatus(status);
         LoggerUtils.logDebug(logger, "subscription %s created", subscription.toString());
         return subscription;
     }
