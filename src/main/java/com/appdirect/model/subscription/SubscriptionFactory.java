@@ -14,7 +14,7 @@ import java.util.UUID;
  * Created by Luis Tobon on 2015-02-15.
  */
 @Component
-public class SubscriptionFactory {
+public class SubscriptionFactory implements ISubscriptionFactory {
     final static Logger logger = LoggerFactory.getLogger(SubscriptionFactory.class);
 
     @Autowired
@@ -31,11 +31,13 @@ public class SubscriptionFactory {
     @Value("${appdirect.events.account.status}")
     private String statusXPath;
 
+    @Override
     public Subscription buildNewSubscription(String event) {
         String status=eventManager.getXpath(event,editionCodeXPath);
         return getSubscriptionWithGivenIdAndStatus(event, UUID.randomUUID().toString(),status);
     }
 
+    @Override
     public Subscription retrieveExistingSubscription(String event){
         String id = getSubscriptionId(event);
         String status=eventManager.getXpath(event,statusXPath);
@@ -43,10 +45,12 @@ public class SubscriptionFactory {
         return getSubscriptionWithGivenIdAndStatus(event, id,status);
     }
 
+    @Override
     public String getSubscriptionId(String event) {
         return eventManager.getXpath(event,accountIDXPath);
     }
 
+    @Override
     public String getNotice(String event){
         return eventManager.getXpath(event, statusXPath);
     }

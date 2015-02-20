@@ -1,9 +1,6 @@
 package com.appdirect.model.user;
 
-import com.appdirect.exceptions.SubscriptionException;
-import com.appdirect.model.EventManager;
 import com.appdirect.model.subscription.Subscription;
-import com.appdirect.model.subscription.SubscriptionFactory;
 import com.appdirect.model.subscription.SubscriptionManager;
 import com.appdirect.model.utils.LoggerUtils;
 import org.apache.commons.collections4.CollectionUtils;
@@ -13,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.Source;
 import java.util.*;
 
 /**
@@ -30,7 +26,7 @@ public class UserManagement {
     private SubscriptionManager subscriptionManager;
 
     @Autowired
-    private UserFactory userFactory;
+    private IUserFactory userFactory;
 
     public boolean assignUser(String event){
         User user=findUser(event);

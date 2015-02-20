@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by Luis Tobon on 2015-02-16.
  */
 @Component
-public class UserFactory {
+public class UserFactory implements IUserFactory {
 
     @Autowired
     private EventManager eventManager;
@@ -23,6 +23,7 @@ public class UserFactory {
 
 
 
+    @Override
     public User buildUser(String event){
         String userFirstName=eventManager.getXpath(event,firstNameXPath);
         String userLastName=eventManager.getXpath(event,lastNameXPath);
@@ -30,6 +31,7 @@ public class UserFactory {
         return new User(userFirstName,userLastName,userId);
     }
 
+    @Override
     public String getUserId(String event) {
         return eventManager.getXpath(event,userIdXPath);
     }

@@ -23,7 +23,7 @@ public class SubscriptionManager {
     private Map<String, Subscription> activeSubscriptions = Collections.synchronizedMap(new HashMap<String, Subscription>());
 
     @Autowired
-    private SubscriptionFactory subscriptionFactory;
+    private ISubscriptionFactory subscriptionFactory;
 
     public String createSubscription(String event) {
         try {

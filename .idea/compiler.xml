@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="appDirect" />
+        <module name="appDirect (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="appDirect" target="1.7" />
+      <module name="appDirect (1)" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
