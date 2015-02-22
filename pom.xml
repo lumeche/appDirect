@@ -91,11 +91,6 @@
             <artifactId>mockito-all</artifactId>
             <version>${mokito.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.openid4java</groupId>
-            <artifactId>openid4java-consumer</artifactId>
-            <version>${openId.version}</version>
-        </dependency>
     </dependencies>
 
 
