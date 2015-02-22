@@ -1,4 +1,4 @@
-This application is a evaluation from appDirect to apply for senior software engineer.
+This application is an evaluation from appDirect to apply for senior software engineer position.
 It was made with JAVA, maven and spring-boot.
 
 Since it contains the web server embedded (Apache tomcat) there is no need to build a war file from it and deploy it in
@@ -10,6 +10,11 @@ In order to compile run "mvn clean package". It will generate a target folder wh
 START SERVER
 To start the server run "java -jar ./target/appDirect-1.0-SNAPSHOT.jar.
 This will start the server by default in 8080
+
+HEROKU COMPATIBLE
+The appllication can be deployed in heroku and it was tested in that environment. The file Procfile define the service
+to be started and how it should be start.
+
 
 ACCEDING THE SERVER
 The server has published two handlers.
