@@ -23,6 +23,7 @@
         <apache.common.collections.version>4.0</apache.common.collections.version>
         <woodstox.version>4.4.1</woodstox.version>
         <oauth.version>1.2.1.2</oauth.version>
+        <openId.version>0.9.6</openId.version>
     </properties>
     <dependencies>
         <dependency>
@@ -89,6 +90,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mokito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openid4java</groupId>
+            <artifactId>openid4java-consumer</artifactId>
+            <version>${openId.version}</version>
         </dependency>
     </dependencies>
 
