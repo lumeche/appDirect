@@ -34,16 +34,7 @@ public class SignatureTest {
     @Value("${oauth.header.signature.regex}")
     private String authorizationSecretRegex;
 
-    private static final String HEADER="GET /rest/api/events/dummyChange HTTP/1.1\n" +
-            "Host: www.appdirect.com\n" +
-            "Content-Type: application/xml\n" +
-            "Authorization: OAuth realm=\"\",\n" +
-            "oauth_nonce=\"72250409\",\n" +
-            "oauth_timestamp=\"1294966759\",\n" +
-            "oauth_consumer_key=\"Dummy\",\n" +
-            "oauth_signature_method=\"HMAC-SHA1\",\n" +
-            "oauth_version=\"1.0\",\n" +
-            "oauth_signature=\"IBlWhOm3PuDwaSdxE/Qu4RKPtVE=\"";
+    private static final String HEADER="OAuth oauth_consumer_key=\"me-18731\", oauth_nonce=\"4682180487416631232\", oauth_signature=\"FHfK7shukmNeVBUBAdxjPZzpme/+3D\", oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1424660210\", oauth_version=\"1.0\"";
 
 
     @Test
