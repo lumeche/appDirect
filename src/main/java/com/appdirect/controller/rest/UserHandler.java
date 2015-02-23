@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Luis Tobon on 2015-02-15.
  */
@@ -27,9 +29,11 @@ public class UserHandler {
     private UserManagement userManagement;
 
     @RequestMapping("/user/assign")
-    public ResponseEntity<UserResult>  userAssign(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token",required = true)String token){
+    public ResponseEntity<UserResult>  userAssign(@RequestHeader("Authorization") String authorization,
+                                                  @RequestParam(value = "token",required = true)String token,
+                                                  HttpServletRequest request){
         LoggerUtils.logDebug(logger, "User assign received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization, handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new UserResult(true));
         String event=getEventInfo(token);
         boolean status=userManagement.assignUser(event);
@@ -39,9 +43,11 @@ public class UserHandler {
 
 
     @RequestMapping("/user/unassign")
-    public ResponseEntity<UserResult>  userUnAssign(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token",required = true)String token){
+    public ResponseEntity<UserResult>  userUnAssign(@RequestHeader("Authorization") String authorization,
+                                                    @RequestParam(value = "token",required = true)String token,
+                                                    HttpServletRequest request){
         LoggerUtils.logDebug(logger, "User unassigned received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new UserResult(true));
         String event=getEventInfo(token);
         boolean status=userManagement.unassignUser(event);
@@ -82,9 +88,6 @@ public class UserHandler {
         return handlerDelegate.buildHTTPResponse(response);
     }
 
-    public boolean isInvalidSignature(String authorization) {
-        return handlerDelegate.isInvalidSignature(authorization);
-    }
 
     public void setHandlerDelegate(HandlerDelegate handlerDelegate) {
         this.handlerDelegate = handlerDelegate;

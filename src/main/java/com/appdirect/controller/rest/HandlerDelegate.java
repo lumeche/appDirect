@@ -15,6 +15,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -89,6 +90,20 @@ class HandlerDelegate {
         }
 
     }
+
+
+
+    public String getFullRequestURL(HttpServletRequest request) {
+        StringBuffer requestURL = request.getRequestURL();
+        String queryString = request.getQueryString();
+
+        if (queryString == null) {
+            return requestURL.toString();
+        } else {
+            return requestURL.append('?').append(queryString).toString();
+        }
+    }
+
 
     private boolean isInvalidSignature(String key, String signature, String url)  {
         OAuthConsumer consumer=new DefaultOAuthConsumer(key,oauthSecret);

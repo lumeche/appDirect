@@ -37,7 +37,7 @@ public class SubscriptionHandler {
                                                                   @RequestParam(value = "token", required = true) String token,
                                                                   HttpServletRequest request, Model model) {
         LoggerUtils.logDebug(logger, "Subscription create received. Token: %s", token);
-        if(handlerDelegate.isInvalidSignature(authorization,getFullRequestURL(request))) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionCreated());
         String event = getEventInfo(token);
         String id = subscriptionManager.createSubscription(event);
@@ -57,22 +57,11 @@ public class SubscriptionHandler {
                                                                    HttpServletRequest request,
                                                                    Model model) {
         LoggerUtils.logDebug(logger, "Subscription change received. Token: %s", token);
-        if(handlerDelegate.isInvalidSignature(authorization,getFullRequestURL(request))) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.updateSubscription(event);
         return buildSubscriptionResponse(status);
-    }
-
-    private String getFullRequestURL(HttpServletRequest request) {
-        StringBuffer requestURL = request.getRequestURL();
-        String queryString = request.getQueryString();
-
-        if (queryString == null) {
-            return requestURL.toString();
-        } else {
-            return requestURL.append('?').append(queryString).toString();
-        }
     }
 
 
@@ -103,7 +92,7 @@ public class SubscriptionHandler {
     }
 
 
-    private ResponseEntity<SubscriptionResponse> buildSubscriptionResponse(boolean status) {
+    public ResponseEntity<SubscriptionResponse> buildSubscriptionResponse(boolean status) {
         if (status) {
             return buildHTTPResponse(new SubscriptionResponse(true, ErrorCode.UNKNOWN_ERROR, ""));
         } else {
