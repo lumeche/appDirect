@@ -1,11 +1,6 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.model.utils.LoggerUtils;
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.basic.DefaultOAuthConsumer;
-import oauth.signpost.exception.OAuthCommunicationException;
-import oauth.signpost.exception.OAuthExpectationFailedException;
-import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,14 +47,14 @@ class HandlerDelegate {
         LoggerUtils.logDebug(logger, "About to send GET request to %s with token %s", appDirectEventsURL, token);
         ResponseEntity<String> response = sendGetRequest(token);
         String event=response.getBody();
-        LoggerUtils.logDebug(logger,"Event  returned %s",event.toString());
+        LoggerUtils.logDebug(logger,"Event  returned %s",event);
         return event;
     }
 
     public ResponseEntity<String> sendGetRequest(String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
-        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
         return oauthRestTemplate.exchange(appDirectEventsURL, HttpMethod.GET,entity,String.class,token);
     }
 
@@ -106,23 +101,11 @@ class HandlerDelegate {
 
 
     private boolean isInvalidSignature(String key, String signature, String url)  {
-        OAuthConsumer consumer=new DefaultOAuthConsumer(key,oauthSecret);
-        try {
             LoggerUtils.logDebug(logger,"key:%s signature:%s,url:%s",key,signature,url);
-            String signatureGenerated=consumer.sign(url);
-        if(signature.equals(signatureGenerated)){
-            LoggerUtils.logDebug(logger,"Signature verified");
-            return false;
-        }else{
+
             LoggerUtils.logError(logger,"Signature cannot be verified");
             //FIXME Returning false until the signature is correctly validated
             return false;
-        }
-
-        } catch (OAuthExpectationFailedException | OAuthCommunicationException |OAuthMessageSignerException e) {
-            LoggerUtils.logError(logger,e,"Exception validationg the signature");
-            return true;
-        }
     }
 
     public void setOauthRestTemplate(RestTemplate oauthRestTemplate) {
