@@ -108,9 +108,9 @@ class HandlerDelegate {
     private boolean isInvalidSignature(String key, String signature, String url)  {
         OAuthConsumer consumer=new DefaultOAuthConsumer(key,oauthSecret);
         try {
-
-            String sinatureGenerated=consumer.sign(url);
-        if(signature.equals(sinatureGenerated)){
+            LoggerUtils.logDebug(logger,"key:%s signature:%s,url:%s",key,signature,url);
+            String signatureGenerated=consumer.sign(url);
+        if(signature.equals(signatureGenerated)){
             LoggerUtils.logDebug(logger,"Signature verified");
             return false;
         }else{
