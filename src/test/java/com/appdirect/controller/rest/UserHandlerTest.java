@@ -35,14 +35,14 @@ public class UserHandlerTest {
         when(handlerDelegate.getEventInfo(anyString())).thenReturn(DEFAULT_RESPONSE);
         when(handlerDelegate.isDummyRequest(anyString())).thenReturn(false);
         when(handlerDelegate.buildHTTPResponse(anyObject())).thenCallRealMethod();
-        when(handlerDelegate.isInvalidSignature(anyString())).thenReturn(false);
+        when(handlerDelegate.isInvalidSignature(anyString(),anyString())).thenReturn(false);
         when(handlerDelegate.sendGetRequest(anyString())).thenReturn(new ResponseEntity<String>(HttpStatus.ACCEPTED));
     }
 
     @Test
     public void testUserAssign() throws Exception {
         //when
-        ResponseEntity<UserResult> response = testee.userAssign("xx", "xxx");
+        ResponseEntity<UserResult> response = testee.userAssign("xx", "xxx",null);
         //do
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody().isSuccess(),is(true));
@@ -51,7 +51,7 @@ public class UserHandlerTest {
     @Test
     public void testUserUnAssign() throws Exception {
         //do
-        ResponseEntity<UserResult> response = testee.userUnAssign("xxx","wewd");
+        ResponseEntity<UserResult> response = testee.userUnAssign("xxx","wewd",null);
         //then
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody().isSuccess(),is(true));
@@ -63,8 +63,8 @@ public class UserHandlerTest {
         when(handlerDelegate.isDummyRequest(anyString())).thenReturn(true);
         InOrder inOrder=inOrder(userManagement);
         //do
-        ResponseEntity<UserResult> response1 = testee.userAssign("asdf", "SDF");
-        ResponseEntity<UserResult> response2 = testee.userUnAssign("asdf","SFD");
+        ResponseEntity<UserResult> response1 = testee.userAssign("asdf", "SDF",null);
+        ResponseEntity<UserResult> response2 = testee.userUnAssign("asdf","SFD",null);
         //thenassertThat(response1.getStatusCode(), is(HttpStatus.ACCEPTED));
         assertThat(response1.getBody().isSuccess(),is(true));
         assertThat(response2.getStatusCode(), is(HttpStatus.OK));

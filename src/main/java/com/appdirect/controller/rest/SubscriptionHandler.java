@@ -71,7 +71,7 @@ public class SubscriptionHandler {
                                                                    HttpServletRequest request,
                                                                    Model model) {
         LoggerUtils.logDebug(logger, "Subscription delete received. Token: %s", token);
-        if(handlerDelegate.isInvalidSignature(authorization, request.getContextPath())) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization, handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.deleteSubscription(event);
@@ -84,7 +84,7 @@ public class SubscriptionHandler {
                                                                    HttpServletRequest request,
                                                                    Model model) {
         LoggerUtils.logDebug(logger, "Subscription status     received. Token: %s", token);
-        if(handlerDelegate.isInvalidSignature(authorization,request.getRequestURI())) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.updateStatusSubscriptions(event);

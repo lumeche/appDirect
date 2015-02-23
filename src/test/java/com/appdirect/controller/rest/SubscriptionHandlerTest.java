@@ -36,7 +36,7 @@ public class SubscriptionHandlerTest {
         when(handlerDelegate.getEventInfo(anyString())).thenReturn(DEFAULT_RESPONSE);
         when(handlerDelegate.isDummyRequest(anyString())).thenReturn(false);
         when(handlerDelegate.buildHTTPResponse(anyObject())).thenCallRealMethod();
-        when(handlerDelegate.isInvalidSignature(anyString())).thenReturn(false);
+        when(handlerDelegate.isInvalidSignature(anyString(),anyString())).thenReturn(false);
         when(handlerDelegate.sendGetRequest(anyString())).thenReturn(new ResponseEntity<String>(HttpStatus.ACCEPTED));
     }
 
@@ -45,7 +45,7 @@ public class SubscriptionHandlerTest {
         //when
         InOrder inOrder=inOrder(subscriptionManager);
         //do
-        ResponseEntity<SubscriptionCreated> response = testee.subscriptionCreate("xxx", "xxx", mock(Model.class));
+        ResponseEntity<SubscriptionCreated> response = testee.subscriptionCreate("xxx", "xxx", null,mock(Model.class));
         //then
         assertThat(response.getBody().getSuccess(), is(true));
         inOrder.verify(subscriptionManager).createSubscription(anyString());
@@ -56,7 +56,7 @@ public class SubscriptionHandlerTest {
         //when
         InOrder inOrder=inOrder(subscriptionManager);
         //do
-        ResponseEntity<SubscriptionResponse> response = testee.subscriptionChange("xxx", "xxx", mock(Model.class));
+        ResponseEntity<SubscriptionResponse> response = testee.subscriptionChange("xxx", "xxx",null, mock(Model.class));
         //then
         assertThat(response.getBody().isSuccess(), is(true));
         inOrder.verify(subscriptionManager).updateSubscription(anyString());
@@ -67,7 +67,7 @@ public class SubscriptionHandlerTest {
         //when
         InOrder inOrder=inOrder(subscriptionManager);
         //do
-        ResponseEntity<SubscriptionResponse> response = testee.subscriptionCancel("xxx", "xxx", mock(Model.class));
+        ResponseEntity<SubscriptionResponse> response = testee.subscriptionCancel("xxx", "xxx",null, mock(Model.class));
         //then
         assertThat(response.getBody().isSuccess(), is(true));
         inOrder.verify(subscriptionManager).deleteSubscription(anyString());
@@ -78,7 +78,7 @@ public class SubscriptionHandlerTest {
         //when
         InOrder inOrder=inOrder(subscriptionManager);
         //do
-        ResponseEntity<SubscriptionResponse> response = testee.subscriptionStatus("xxx", "xxx", mock(Model.class));
+        ResponseEntity<SubscriptionResponse> response = testee.subscriptionStatus("xxx", "xxx", null,mock(Model.class));
         //then
         assertThat(response.getBody().isSuccess(), is(true));
         inOrder.verify(subscriptionManager).updateStatusSubscriptions(anyString());
