@@ -1,6 +1,11 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.model.utils.LoggerUtils;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.basic.DefaultOAuthConsumer;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Luis Tobon on 2015-02-15.
@@ -27,6 +34,18 @@ class HandlerDelegate {
 
     @Value(value = "${appdirect.events.url}")
     private String appDirectEventsURL;
+
+    @Value("${oauth.consumer.secret}")
+    private String oauthSecret;
+
+    @Value("${oauth.consumer.key}")
+    private String oauthKey;
+
+    @Value("${oauth.header.key.regex}")
+    private String authorizationKeyRegex;
+
+    @Value("${oauth.header.signature.regex}")
+    private String authorizationSecretRegex;
 
     public String getEventInfo(String token) {
         LoggerUtils.logDebug(logger, "About to send GET request to %s with token %s", appDirectEventsURL, token);
@@ -56,12 +75,50 @@ class HandlerDelegate {
     }
 
 
-    public boolean isInvalidSignature(String authorization) {
+    public boolean isInvalidSignature(String authorization,String url) {
         LoggerUtils.logDebug(logger,"Authorization header: %s",authorization);
-        return false;
+        Matcher matcherKey= Pattern.compile(authorizationKeyRegex).matcher(authorization);
+        Matcher matcherSignature=Pattern.compile(authorizationSecretRegex).matcher(authorization);
+        if(matcherKey.find() && matcherSignature.find()){
+            String key=matcherKey.group(1);
+            String signature=matcherSignature.group(1);
+            return isInvalidSignature(key,signature, url);
+        }else{
+            LoggerUtils.logError(logger,"Key or Signature not found");
+            return true;
+        }
+
+    }
+
+    private boolean isInvalidSignature(String key, String signature, String url)  {
+        OAuthConsumer consumer=new DefaultOAuthConsumer(key,oauthSecret);
+        try {
+
+            String sinatureGenerated=consumer.sign(url);
+        if(signature.equals(sinatureGenerated)){
+            LoggerUtils.logDebug(logger,"Signature verified");
+            return false;
+        }else{
+            LoggerUtils.logError(logger,"Signature cannot be verified");
+            //FIXME Returning false until the signature is correctly validated
+            return false;
+        }
+
+        } catch (OAuthExpectationFailedException | OAuthCommunicationException |OAuthMessageSignerException e) {
+            LoggerUtils.logError(logger,e,"Exception validationg the signature");
+            return true;
+        }
     }
 
     public void setOauthRestTemplate(RestTemplate oauthRestTemplate) {
         this.oauthRestTemplate = oauthRestTemplate;
+    }
+
+    public void setOauthKey(String oauthKey) {
+        this.oauthKey = oauthKey;
+    }
+
+    public void setOauthSecret(String oauthSecret) {
+        this.oauthSecret = oauthSecret;
     }
 }

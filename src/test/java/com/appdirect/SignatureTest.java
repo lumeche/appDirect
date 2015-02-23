@@ -16,6 +16,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Luis Tobon on 2015-02-18.
@@ -27,6 +29,34 @@ public class SignatureTest {
     private String key;
     @Value("${oauth.consumer.secret}")
     private String secret;
+    @Value("${oauth.header.key.regex}")
+    private String authorizationKeyRegex;
+    @Value("${oauth.header.signature.regex}")
+    private String authorizationSecretRegex;
+
+    private static final String HEADER="GET /rest/api/events/dummyChange HTTP/1.1\n" +
+            "Host: www.appdirect.com\n" +
+            "Content-Type: application/xml\n" +
+            "Authorization: OAuth realm=\"\",\n" +
+            "oauth_nonce=\"72250409\",\n" +
+            "oauth_timestamp=\"1294966759\",\n" +
+            "oauth_consumer_key=\"Dummy\",\n" +
+            "oauth_signature_method=\"HMAC-SHA1\",\n" +
+            "oauth_version=\"1.0\",\n" +
+            "oauth_signature=\"IBlWhOm3PuDwaSdxE/Qu4RKPtVE=\"";
+
+
+    @Test
+    public void testExtractData(){
+            Matcher matcherKey=Pattern.compile(authorizationKeyRegex).matcher(HEADER);
+            Matcher matcherSecret=Pattern.compile(authorizationSecretRegex).matcher(HEADER);
+            System.out.println("find"+matcherKey.find()+matcherSecret.find());
+
+        System.out.println("key:"+matcherKey.group(1));
+        System.out.println("signature:"+matcherSecret.group(1));
+
+
+    }
 
     @Ignore
     @Test

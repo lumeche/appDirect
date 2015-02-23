@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Luis Tobon on 2015-02-14.
  */
@@ -31,9 +33,11 @@ public class SubscriptionHandler {
     private SubscriptionManager subscriptionManager;
 
     @RequestMapping("/subscription/create")
-    public ResponseEntity<SubscriptionCreated> subscriptionCreate(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token", required = true) String token, Model model) {
+    public ResponseEntity<SubscriptionCreated> subscriptionCreate(@RequestHeader("Authorization") String authorization,
+                                                                  @RequestParam(value = "token", required = true) String token,
+                                                                  HttpServletRequest request, Model model) {
         LoggerUtils.logDebug(logger, "Subscription create received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionCreated());
         String event = getEventInfo(token);
         String id = subscriptionManager.createSubscription(event);
@@ -48,20 +52,37 @@ public class SubscriptionHandler {
 
 
     @RequestMapping("/subscription/change")
-    public ResponseEntity<SubscriptionResponse> subscriptionChange(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token", required = true) String token, Model model) {
+    public ResponseEntity<SubscriptionResponse> subscriptionChange(@RequestHeader("Authorization") String authorization,
+                                                                   @RequestParam(value = "token", required = true) String token,
+                                                                   HttpServletRequest request,
+                                                                   Model model) {
         LoggerUtils.logDebug(logger, "Subscription change received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.updateSubscription(event);
         return buildSubscriptionResponse(status);
     }
 
+    private String getFullRequestURL(HttpServletRequest request) {
+        StringBuffer requestURL = request.getRequestURL();
+        String queryString = request.getQueryString();
+
+        if (queryString == null) {
+            return requestURL.toString();
+        } else {
+            return requestURL.append('?').append(queryString).toString();
+        }
+    }
+
 
     @RequestMapping("/subscription/cancel")
-    public ResponseEntity<SubscriptionResponse> subscriptionCancel(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token", required = true) String token, Model model) {
+    public ResponseEntity<SubscriptionResponse> subscriptionCancel(@RequestHeader("Authorization") String authorization,
+                                                                   @RequestParam(value = "token", required = true) String token,
+                                                                   HttpServletRequest request,
+                                                                   Model model) {
         LoggerUtils.logDebug(logger, "Subscription delete received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization, request.getContextPath())) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.deleteSubscription(event);
@@ -69,9 +90,12 @@ public class SubscriptionHandler {
     }
 
     @RequestMapping("/subscription/status")
-    public ResponseEntity<SubscriptionResponse> subscriptionStatus(@RequestHeader("Authorization") String authorization, @RequestParam(value = "token", required = true) String token, Model model) {
+    public ResponseEntity<SubscriptionResponse> subscriptionStatus(@RequestHeader("Authorization") String authorization,
+                                                                   @RequestParam(value = "token", required = true) String token,
+                                                                   HttpServletRequest request,
+                                                                   Model model) {
         LoggerUtils.logDebug(logger, "Subscription status     received. Token: %s", token);
-        if(isInvalidSignature(authorization)) return buildForbiddenHTTPResponse();
+        if(handlerDelegate.isInvalidSignature(authorization,request.getRequestURI())) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new SubscriptionResponse(true));
         String event = getEventInfo(token);
         boolean status = subscriptionManager.updateStatusSubscriptions(event);
@@ -106,10 +130,6 @@ public class SubscriptionHandler {
 
     protected ResponseEntity buildHTTPResponse(Object response) {
         return handlerDelegate.buildHTTPResponse(response);
-    }
-
-    protected boolean isInvalidSignature(String authorization) {
-        return handlerDelegate.isInvalidSignature(authorization);
     }
 
     public void setHandlerDelegate(HandlerDelegate handlerDelegate) {
