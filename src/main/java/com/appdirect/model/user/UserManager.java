@@ -5,28 +5,12 @@ import com.appdirect.model.subscription.SubscriptionManager;
 import com.appdirect.model.utils.LoggerUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
-import org.openid4java.association.AssociationException;
-import org.openid4java.consumer.ConsumerException;
-import org.openid4java.consumer.ConsumerManager;
-import org.openid4java.consumer.VerificationResult;
-import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.discovery.DiscoveryInformation;
-import org.openid4java.discovery.Identifier;
-import org.openid4java.message.AuthRequest;
-import org.openid4java.message.MessageException;
-import org.openid4java.message.ParameterList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -36,63 +20,14 @@ import java.util.*;
 public class UserManager {
 
     final static Logger logger = LoggerFactory.getLogger(UserManager.class);
-    private static final String OPENID_DISC = "openid-disc";
 
     private Map<User, List<Subscription>> usersMap = Collections.synchronizedMap(new HashMap<User, List<Subscription>>());
-    private Map<User, DiscoveryInformation> discoveryInformationMap = Collections.synchronizedMap(new HashMap<User, DiscoveryInformation>());
     @Autowired
     private SubscriptionManager subscriptionManager;
 
     @Autowired
     private IUserFactory userFactory;
 
-    @Autowired
-    private ConsumerManager consumerManager;
-
-    public boolean authenticateUser(String userId, String idURL, String returnURL, HttpServletRequest request, ServletResponse response) {
-        try {
-            List discoveries = consumerManager.discover(idURL);
-            DiscoveryInformation discovered = consumerManager.associate(discoveries);
-            request.getSession().setAttribute(OPENID_DISC, discovered);
-            User user = findUserByID(userId);
-            discoveryInformationMap.put(user, discovered);
-            AuthRequest authRequest = consumerManager.authenticate(discovered, returnURL);
-            LoggerUtils.logDebug(logger, "About to redirect user %s to %s", userId, authRequest.getDestinationUrl(true));
-//            response.sendRedirect(authRequest.getDestinationUrl(true));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("formredirection.jsp");
-            request.setAttribute("parameterMap", request.getParameterMap());
-            request.setAttribute("destinationUrl", authRequest.getDestinationUrl(false));
-            dispatcher.forward(request, response);
-        } catch (DiscoveryException | MessageException | ConsumerException | IOException | ServletException e) {
-            LoggerUtils.logError(logger, e, "Error authenticating the user");
-            return false;
-        }
-        return true;
-    }
-
-
-    public String verifyAuthentication(HttpServletRequest request) {
-        ParameterList parameterList = new ParameterList(request.getParameterMap());
-        DiscoveryInformation discovered = (DiscoveryInformation) request.getSession().getAttribute(OPENID_DISC);
-        StringBuffer receivingURL = request.getRequestURL();
-        String queryString = request.getQueryString();
-        if (queryString != null && queryString.length() > 0)
-            receivingURL.append("?").append(request.getQueryString());
-
-        try {
-            VerificationResult verification = consumerManager.verify(
-                    receivingURL.toString(),
-                    parameterList, discovered);
-            Identifier verified = verification.getVerifiedId();
-            if (verified != null){
-                LoggerUtils.logDebug(logger,"Verification succed %s",verified.getIdentifier());
-            }
-            return  verified.getIdentifier();
-        } catch (MessageException|DiscoveryException|AssociationException e) {
-            LoggerUtils.logError(logger,e,"Error verifying authentication");
-            return null;
-        }
-    }
 
     public boolean assignUser(String event) {
         User user = findUserByEvent(event);

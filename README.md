@@ -12,7 +12,7 @@ To start the server run "java -jar ./target/appDirect-1.0-SNAPSHOT.jar.
 This will start the server by default in 8080
 
 HEROKU COMPATIBLE
-The appllication can be deployed in heroku and it was tested in that environment. The file Procfile define the service
+The application can be deployed in heroku and it was tested in that environment. The file Procfile define the service
 to be started and how it should be start.
 
 

@@ -12,5 +12,5 @@
     </bean>
 
     <bean id="xpathTemplate" class="org.springframework.xml.xpath.Jaxp13XPathTemplate"/>
-    <bean id="consumerManager" class="org.openid4java.consumer.ConsumerManager"/>
+
 </beans>
