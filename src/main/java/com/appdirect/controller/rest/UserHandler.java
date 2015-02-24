@@ -1,7 +1,7 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.controller.rest.payloads.UserResult;
-import com.appdirect.model.user.UserManagement;
+import com.appdirect.model.user.UserManager;
 import com.appdirect.model.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class UserHandler {
     private HandlerDelegate handlerDelegate ;
 
     @Autowired
-    private UserManagement userManagement;
+    private UserManager userManager;
 
     @RequestMapping("/user/assign")
     public ResponseEntity<UserResult>  userAssign(@RequestHeader("Authorization") String authorization,
@@ -36,7 +36,7 @@ public class UserHandler {
         if(handlerDelegate.isInvalidSignature(authorization, handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new UserResult(true));
         String event=getEventInfo(token);
-        boolean status=userManagement.assignUser(event);
+        boolean status= userManager.assignUser(event);
         return buildUserResult(status);
     }
 
@@ -50,7 +50,7 @@ public class UserHandler {
         if(handlerDelegate.isInvalidSignature(authorization,handlerDelegate.getFullRequestURL(request))) return buildForbiddenHTTPResponse();
         if (isDummyRequest(token)) return buildHTTPResponse(new UserResult(true));
         String event=getEventInfo(token);
-        boolean status=userManagement.unassignUser(event);
+        boolean status= userManager.unassignUser(event);
         return buildUserResult(status);
     }
 
@@ -64,8 +64,8 @@ public class UserHandler {
         }
     }
 
-    public void setUserManagement(UserManagement userManagement) {
-        this.userManagement = userManagement;
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
     }
 
     public String getEventInfo(String token) {

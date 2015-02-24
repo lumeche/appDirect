@@ -7,4 +7,6 @@ public interface IUserFactory {
     User buildUser(String event);
 
     String getUserId(String event);
+
+    User buildEmptyUser(String userId);
 }

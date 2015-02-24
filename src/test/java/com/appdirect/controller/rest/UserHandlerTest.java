@@ -1,12 +1,10 @@
 package com.appdirect.controller.rest;
 
 import com.appdirect.controller.rest.payloads.UserResult;
-import com.appdirect.model.user.UserManagement;
-import org.hamcrest.CoreMatchers;
+import com.appdirect.model.user.UserManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
-import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -22,15 +20,15 @@ public class UserHandlerTest {
 
     private UserHandler testee;
     private HandlerDelegate handlerDelegate;
-    private UserManagement userManagement;
+    private UserManager userManager;
 
     @Before
     public void setUp() throws Exception {
         testee = new UserHandler();
-        userManagement = mock(UserManagement.class);
+        userManager = mock(UserManager.class);
         handlerDelegate = mock(HandlerDelegate.class);
         testee.setHandlerDelegate(handlerDelegate);
-        testee.setUserManagement(userManagement);
+        testee.setUserManager(userManager);
 
         when(handlerDelegate.getEventInfo(anyString())).thenReturn(DEFAULT_RESPONSE);
         when(handlerDelegate.isDummyRequest(anyString())).thenReturn(false);
@@ -61,7 +59,7 @@ public class UserHandlerTest {
     public void testDummy() throws Exception {
         //when
         when(handlerDelegate.isDummyRequest(anyString())).thenReturn(true);
-        InOrder inOrder=inOrder(userManagement);
+        InOrder inOrder=inOrder(userManager);
         //do
         ResponseEntity<UserResult> response1 = testee.userAssign("asdf", "SDF",null);
         ResponseEntity<UserResult> response2 = testee.userUnAssign("asdf","SFD",null);
@@ -69,7 +67,7 @@ public class UserHandlerTest {
         assertThat(response1.getBody().isSuccess(),is(true));
         assertThat(response2.getStatusCode(), is(HttpStatus.OK));
         assertThat(response2.getBody().isSuccess(),is(true));
-        inOrder.verify(userManagement,never()).unassignUser(anyString());
-        inOrder.verify(userManagement,never()).assignUser(anyString());
+        inOrder.verify(userManager,never()).unassignUser(anyString());
+        inOrder.verify(userManager,never()).assignUser(anyString());
     }
 }

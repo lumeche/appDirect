@@ -36,6 +36,11 @@ public class UserFactory implements IUserFactory {
         return eventManager.getXpath(event,userIdXPath);
     }
 
+    @Override
+    public User buildEmptyUser(String userId) {
+        return new User(userId);
+    }
+
 
     public void setEventManager(EventManager eventManager) {
         this.eventManager = eventManager;
